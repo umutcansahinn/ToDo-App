@@ -10,5 +10,18 @@
     <string name="radio_button_shopping">Shopping</string>
     <string name="radio_button_sport">Sport</string>
 
-    <string name="select_date">Select date</string>
+    <string name="select_date_button">Select Date</string>
+    <string name="save_button">Save</string>
+
+
+    <string name="input_note">Input Note</string>
+
+    <string name="text_type">Example Type</string>
+    <string name="text_date">01/01/2023</string>
+    <string name="text_note">Example Note</string>
+    <string name="content_description"> </string>
+
+
+    <string name="true_">true</string>
+    <string name="false_">true</string>
 </resources>

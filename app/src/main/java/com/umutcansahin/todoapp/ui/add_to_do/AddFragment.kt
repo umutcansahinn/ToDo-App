@@ -76,6 +76,7 @@ class AddFragment : Fragment(R.layout.fragment_add) {
 
     private fun initViews() {
         binding.saveButton.setOnClickListener {
+
             viewModel.insertOrUpdate(
                 name = binding.nameEditText.text.toString(),
                 isInsert = isInsert,
@@ -90,7 +91,7 @@ class AddFragment : Fragment(R.layout.fragment_add) {
         binding.dateButton.setOnClickListener {
             val datePicker =
                 MaterialDatePicker.Builder.datePicker()
-                    .setTitleText(getString(R.string.select_date))
+                    .setTitleText(getString(R.string.select_date_button))
                     .setSelection(selectedDate.time)
                     .build()
             datePicker.addOnPositiveButtonClickListener { timestamp ->

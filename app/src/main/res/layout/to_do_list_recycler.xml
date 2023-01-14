@@ -5,23 +5,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardBackgroundColor="#E6E6E6"
-    app:cardCornerRadius="4dp"
+    android:layout_marginTop="@dimen/space_24"
+    android:layout_marginLeft="@dimen/space_24"
+    android:layout_marginRight="@dimen/space_24"
+    app:cardBackgroundColor="@color/gray_100"
+    app:cardCornerRadius="12dp"
     app:cardElevation="3dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_4">
 
         <TextView
             android:id="@+id/recyclerTypeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="4dp"
-            android:text="Yapılacaklar Type"
-            android:textColor="#FF0000"
-            android:textSize="20dp"
+            android:text="@string/text_type"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_16"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -31,9 +34,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="4dp"
-            android:text="20/20/2020"
+            android:text="@string/text_date"
             android:textColor="@color/black"
-            android:textSize="16dp"
+            android:textSize="@dimen/text_16"
             android:textStyle="italic"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recyclerTypeTextView">
@@ -44,9 +47,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="4dp"
-            android:text="Yapılacaklar list"
+            android:text="@string/text_note"
             android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textSize="@dimen/text_16"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recyclerDateTextView">
         </TextView>
@@ -56,6 +59,8 @@
             android:id="@+id/recyclerUpdateButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/new_button"
+            android:contentDescription="@string/content_description"
             android:padding="8dp"
             android:src="@drawable/ic_baseline_edit_24"
             app:layout_constraintRight_toLeftOf="@+id/recyclerDeleteButton"
@@ -66,6 +71,8 @@
             android:id="@+id/recyclerDeleteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/red_100"
+            android:contentDescription="@string/content_description"
             android:padding="8dp"
             android:src="@drawable/ic_baseline_delete_24"
             app:layout_constraintRight_toRightOf="parent"
