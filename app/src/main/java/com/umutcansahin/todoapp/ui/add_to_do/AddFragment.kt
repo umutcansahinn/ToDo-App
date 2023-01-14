@@ -1,11 +1,8 @@
 package com.umutcansahin.todoapp.ui.add_to_do
 
-
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -15,6 +12,7 @@ import com.umutcansahin.todoapp.utils.Constants
 import com.umutcansahin.todoapp.utils.toFormat
 import com.umutcansahin.todoapp.data.local.ToDoEntity
 import com.umutcansahin.todoapp.databinding.FragmentAddBinding
+import com.umutcansahin.todoapp.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_add.*
 import java.util.*
@@ -22,9 +20,7 @@ import java.util.*
 @AndroidEntryPoint
 class AddFragment : Fragment(R.layout.fragment_add) {
 
-    private var _binding: FragmentAddBinding? = null
-    private val binding get() = _binding!!
-
+    private val binding by viewBinding(FragmentAddBinding::bind)
 
     private val viewModel: AddViewModel by viewModels()
 
@@ -33,13 +29,6 @@ class AddFragment : Fragment(R.layout.fragment_add) {
     private var type: String? = null
     private var selectedDate = Date()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentAddBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,10 +39,7 @@ class AddFragment : Fragment(R.layout.fragment_add) {
             isInsert = AddFragmentArgs.fromBundle(it).isInsert
             id = AddFragmentArgs.fromBundle(it).id
         }
-
         viewModel.getById(id)
-
-
     }
 
     private fun observeEvent() {
@@ -124,10 +110,5 @@ class AddFragment : Fragment(R.layout.fragment_add) {
 
             }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

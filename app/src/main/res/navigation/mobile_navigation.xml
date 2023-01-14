@@ -17,9 +17,9 @@
 
     <fragment
         android:id="@+id/navigation_chart"
-        android:name="com.umutcansahin.todoapp.ui.notifications.NotificationsFragment"
+        android:name="com.umutcansahin.todoapp.ui.chart.ChartFragment"
         android:label="@string/title_chart"
-        tools:layout="@layout/fragment_notifications" >
+        tools:layout="@layout/fragment_chart" >
         <action
             android:id="@+id/action_navigation_notifications_to_detailChartFragment"
             app:destination="@id/detailChartFragment" />

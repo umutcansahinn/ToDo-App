@@ -1,11 +1,9 @@
-package com.umutcansahin.todoapp.ui.notifications
+package com.umutcansahin.todoapp.ui.chart
 
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -14,35 +12,25 @@ import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.umutcansahin.todoapp.R
 import com.umutcansahin.todoapp.data.local.ToDoEntity
-import com.umutcansahin.todoapp.databinding.FragmentNotificationsBinding
+import com.umutcansahin.todoapp.databinding.FragmentChartBinding
+import com.umutcansahin.todoapp.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_notifications.*
+import kotlinx.android.synthetic.main.fragment_chart.*
 
 @AndroidEntryPoint
-class NotificationsFragment : Fragment() {
+class ChartFragment : Fragment(R.layout.fragment_chart) {
 
-    private var _binding: FragmentNotificationsBinding? = null
-    private val binding get() = _binding!!
+    private val binding by viewBinding(FragmentChartBinding::bind)
 
-    private val viewModel: NotificationsViewModel by viewModels()
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    private val viewModel: ChartViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getAllToDo()
         observeEvent()
         initViews()
-
     }
 
     private fun observeEvent() {
@@ -60,15 +48,12 @@ class NotificationsFragment : Fragment() {
                 Log.d("pie_h","${h}")
                 e?.let {
 
-                    val action = NotificationsFragmentDirections
+                    val action = ChartFragmentDirections
                         .actionNavigationNotificationsToDetailChartFragment(it.data.toString())
                     Navigation.findNavController(requireView()).navigate(action)
                 }
             }
-
-            override fun onNothingSelected() {
-            }
-
+            override fun onNothingSelected() {}
         })
     }
 
@@ -101,15 +86,6 @@ class NotificationsFragment : Fragment() {
             val data = PieData(pieDataSet)
             pieChart.data = data
             pieChart.animateY(2000)
-
-
         }
     }
-
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
 }

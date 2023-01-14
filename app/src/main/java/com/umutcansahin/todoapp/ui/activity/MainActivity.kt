@@ -1,12 +1,8 @@
 package com.umutcansahin.todoapp.ui.activity
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import androidx.activity.addCallback
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController

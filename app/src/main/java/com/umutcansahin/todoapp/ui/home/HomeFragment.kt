@@ -12,31 +12,22 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.umutcansahin.todoapp.R
 import com.umutcansahin.todoapp.databinding.FragmentHomeBinding
 import com.umutcansahin.todoapp.ui.add_to_do.AddViewModel
 import com.umutcansahin.todoapp.ui.home.adapter.ToDoListAdapter
+import com.umutcansahin.todoapp.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_home.*
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(R.layout.fragment_home) {
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private val binding by viewBinding(FragmentHomeBinding::bind)
 
     private val viewModel: HomeViewModel by viewModels()
 
     private val toDoListAdapter = ToDoListAdapter(arrayListOf())
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        return root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,7 +38,6 @@ class HomeFragment : Fragment() {
         initViews()
 
     }
-
 
     private fun initViews() {
 
@@ -61,7 +51,6 @@ class HomeFragment : Fragment() {
         toDoListAdapter.onItemClick = {
             viewModel.deleteToDo(it)
         }
-
     }
 
     private fun observeEvent() {
@@ -70,10 +59,5 @@ class HomeFragment : Fragment() {
                 toDoListAdapter.updateList(it)
             }
         })
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

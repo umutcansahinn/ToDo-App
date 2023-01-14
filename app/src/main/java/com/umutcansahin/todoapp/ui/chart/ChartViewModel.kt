@@ -1,4 +1,4 @@
-package com.umutcansahin.todoapp.ui.notifications
+package com.umutcansahin.todoapp.ui.chart
 
 
 import androidx.lifecycle.*
@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class NotificationsViewModel @Inject constructor(
+class ChartViewModel @Inject constructor(
     private val getAllToDoUseCase: GetAllToDoUseCase,
 ) : ViewModel() {
 
