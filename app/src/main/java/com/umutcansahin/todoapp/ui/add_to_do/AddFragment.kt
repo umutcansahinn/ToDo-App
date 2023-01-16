@@ -10,8 +10,8 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.umutcansahin.todoapp.R
 import com.umutcansahin.todoapp.utils.Constants
 import com.umutcansahin.todoapp.utils.toFormat
-import com.umutcansahin.todoapp.data.local.ToDoEntity
 import com.umutcansahin.todoapp.databinding.FragmentAddBinding
+import com.umutcansahin.todoapp.domain.uimodel.ToDoUIModel
 import com.umutcansahin.todoapp.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_add.*
@@ -50,7 +50,7 @@ class AddFragment : Fragment(R.layout.fragment_add) {
         }
     }
 
-    private fun setUIState(entity: ToDoEntity) {
+    private fun setUIState(entity: ToDoUIModel) {
 
         binding.dateButton.text = entity.timestamp.toFormat(Constants.CURRENT_DATE_FORMAT)
         binding.nameEditText.setText(entity.name)

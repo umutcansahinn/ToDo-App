@@ -1,25 +1,32 @@
 package com.umutcansahin.todoapp.domain.mapper
 
 import com.umutcansahin.todoapp.data.local.ToDoEntity
-import java.util.*
+import com.umutcansahin.todoapp.domain.uimodel.ToDoUIModel
 
-object ToDoEntityMapper {
-/*
-    fun map(toDoEntity: ToDoEntity?): ToDoUIModel? {
+class ToDoEntityMapper {
 
-        if (toDoEntity == null) {
-            return null
-        }
+    fun map(entity: ToDoEntity): ToDoUIModel {
+        return entity.toUiModel()
+    }
 
-        val date = toDoEntity.timestamp ?: Date()
-        val type = toDoEntity.type.orEmpty()
+    private fun ToDoEntity.toUiModel() = ToDoUIModel(
+        id = getId(),
+        name = getName(),
+        isDone = getIsDone() ,
+        type = getType(),
+        timestamp = getTimestamp()
+    )
 
-        return ToDoUIModel(
-            id = toDoEntity.id,
-            name = toDoEntity.name,
-            isDone = toDoEntity.isDone,
-            type = type,
-            timestamp = date
-        )
-    }*/
+    private fun ToDoEntity.getId() = id
+
+    private fun ToDoEntity.getName() = name
+
+    private fun ToDoEntity.getIsDone() = isDone
+
+    private fun ToDoEntity.getType() = type.orEmpty()
+
+    private fun ToDoEntity.getTimestamp() = timestamp
+
+
+
 }

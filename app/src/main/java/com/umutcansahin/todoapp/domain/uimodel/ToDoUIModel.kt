@@ -1,13 +1,10 @@
 package com.umutcansahin.todoapp.domain.uimodel
 
 import android.os.Parcelable
-import androidx.room.ColumnInfo
-import androidx.room.PrimaryKey
-import androidx.versionedparcelable.ParcelField
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 
-/*
+
 @Parcelize
 data class ToDoUIModel(
     val id: Int,
@@ -17,4 +14,3 @@ data class ToDoUIModel(
     val timestamp: Date
 ): Parcelable
 
- */

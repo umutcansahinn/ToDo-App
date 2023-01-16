@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.umutcansahin.todoapp.utils.Constants
 import com.umutcansahin.todoapp.data.local.ToDoDatabase
 import com.umutcansahin.todoapp.data.repository.ToDoRepositoryImpl
+import com.umutcansahin.todoapp.domain.mapper.ToDoEntityMapper
 import com.umutcansahin.todoapp.domain.repository.ToDoRepository
 import dagger.Module
 import dagger.Provides
@@ -30,6 +31,12 @@ object AppModule {
     @Singleton
     fun provideToDoRepository(db: ToDoDatabase,): ToDoRepository {
         return ToDoRepositoryImpl(db.toDoDao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideToDoEntityMapper(): ToDoEntityMapper {
+        return ToDoEntityMapper()
     }
 
 }

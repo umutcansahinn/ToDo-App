@@ -13,8 +13,8 @@ import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.umutcansahin.todoapp.R
-import com.umutcansahin.todoapp.data.local.ToDoEntity
 import com.umutcansahin.todoapp.databinding.FragmentChartBinding
+import com.umutcansahin.todoapp.domain.uimodel.ToDoUIModel
 import com.umutcansahin.todoapp.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_chart.*
@@ -57,7 +57,7 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
         })
     }
 
-    private fun setChartData(list: List<ToDoEntity>) {
+    private fun setChartData(list: List<ToDoUIModel>) {
 
         var school = 0f
         var shopping = 0f

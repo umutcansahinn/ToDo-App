@@ -1,14 +1,19 @@
 package com.umutcansahin.todoapp.domain.use_case
 
-import com.umutcansahin.todoapp.data.local.ToDoEntity
+import com.umutcansahin.todoapp.domain.mapper.ToDoEntityMapper
 import com.umutcansahin.todoapp.domain.repository.ToDoRepository
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class GetAllToDoUseCase @Inject constructor(
-    private val repository: ToDoRepository
+    private val repository: ToDoRepository,
+    private val mapper: ToDoEntityMapper
 ) {
-    operator fun invoke(): Flow<List<ToDoEntity>> {
-        return repository.getAllToDoList()
+
+    operator fun invoke() = repository.getAllToDoList().map { toDoList->
+        toDoList.map {
+            mapper.map(entity = it)
+        }
+
     }
 }

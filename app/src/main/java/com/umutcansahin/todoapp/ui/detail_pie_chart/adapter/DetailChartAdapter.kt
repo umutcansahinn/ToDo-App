@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.umutcansahin.todoapp.utils.Constants
 import com.umutcansahin.todoapp.utils.toFormat
-import com.umutcansahin.todoapp.data.local.ToDoEntity
 import com.umutcansahin.todoapp.databinding.DetailChartRecyclerBinding
+import com.umutcansahin.todoapp.domain.uimodel.ToDoUIModel
 
-class DetailChartAdapter(val todo: ArrayList<ToDoEntity>) : RecyclerView.Adapter<DetailChartAdapter.DetailChartViewHolder>(){
+class DetailChartAdapter(val todo: ArrayList<ToDoUIModel>) : RecyclerView.Adapter<DetailChartAdapter.DetailChartViewHolder>(){
 
     class DetailChartViewHolder(val binding: DetailChartRecyclerBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -33,7 +33,7 @@ class DetailChartAdapter(val todo: ArrayList<ToDoEntity>) : RecyclerView.Adapter
         return todo.size
     }
 
-    fun updateList(newToDoList: List<ToDoEntity>) {
+    fun updateList(newToDoList: List<ToDoUIModel>) {
         todo.clear()
         todo.addAll(newToDoList)
         notifyDataSetChanged()

@@ -6,11 +6,11 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.umutcansahin.todoapp.utils.Constants
 import com.umutcansahin.todoapp.utils.toFormat
-import com.umutcansahin.todoapp.data.local.ToDoEntity
 import com.umutcansahin.todoapp.databinding.ToDoListRecyclerBinding
+import com.umutcansahin.todoapp.domain.uimodel.ToDoUIModel
 import com.umutcansahin.todoapp.ui.home.HomeFragmentDirections
 
-class ToDoListAdapter(val toDoList: ArrayList<ToDoEntity>) : RecyclerView.Adapter<ToDoListAdapter.ToDoListViewHolder>(){
+class ToDoListAdapter(val toDoList: ArrayList<ToDoUIModel>) : RecyclerView.Adapter<ToDoListAdapter.ToDoListViewHolder>(){
 
     class ToDoListViewHolder(val binding: ToDoListRecyclerBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -47,13 +47,13 @@ class ToDoListAdapter(val toDoList: ArrayList<ToDoEntity>) : RecyclerView.Adapte
         return toDoList.size
     }
 
-    fun updateList(newToDoList: List<ToDoEntity>) {
+    fun updateList(newToDoList: List<ToDoUIModel>) {
         toDoList.clear()
         toDoList.addAll(newToDoList)
         notifyDataSetChanged()
     }
 
-    var onItemClick: ((ToDoEntity) -> Unit)? = null
+    var onItemClick: ((ToDoUIModel) -> Unit)? = null
 
 
 }
