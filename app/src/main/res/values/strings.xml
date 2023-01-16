@@ -24,4 +24,14 @@
 
     <string name="true_">true</string>
     <string name="false_">true</string>
+
+
+
+    <string name="alert">Alert</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="alert_mesaj">Are you sure ?</string>
+
+
+
 </resources>
