@@ -1,5 +1,6 @@
 package com.umutcansahin.todoapp.ui.detail_pie_chart.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,7 +9,7 @@ import com.umutcansahin.todoapp.utils.toFormat
 import com.umutcansahin.todoapp.databinding.DetailChartRecyclerBinding
 import com.umutcansahin.todoapp.domain.uimodel.ToDoUIModel
 
-class DetailChartAdapter(val todo: ArrayList<ToDoUIModel>) : RecyclerView.Adapter<DetailChartAdapter.DetailChartViewHolder>(){
+class DetailChartAdapter(val toDoList: ArrayList<ToDoUIModel>) : RecyclerView.Adapter<DetailChartAdapter.DetailChartViewHolder>(){
 
     class DetailChartViewHolder(val binding: DetailChartRecyclerBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -22,20 +23,22 @@ class DetailChartAdapter(val todo: ArrayList<ToDoUIModel>) : RecyclerView.Adapte
     }
 
     override fun onBindViewHolder(holder: DetailChartViewHolder, position: Int) {
-        holder.binding.recyclerNameTextView.text = todo[position].name
-        holder.binding.recyclerTypeTextView.text = todo[position].type
-        holder.binding.recyclerDateTextView.text = todo[position].timestamp.toFormat(
+        holder.binding.recyclerNameTextView.text = toDoList[position].name
+        holder.binding.recyclerTypeTextView.text = toDoList[position].type
+        holder.binding.recyclerDateTextView.text = toDoList[position].timestamp.toFormat(
             Constants.CURRENT_DATE_FORMAT
         )
+
+        holder.binding.cardView.setCardBackgroundColor(Color.parseColor(toDoList[position].typeColor))
     }
 
     override fun getItemCount(): Int {
-        return todo.size
+        return toDoList.size
     }
 
     fun updateList(newToDoList: List<ToDoUIModel>) {
-        todo.clear()
-        todo.addAll(newToDoList)
+        toDoList.clear()
+        toDoList.addAll(newToDoList)
         notifyDataSetChanged()
     }
 

@@ -33,5 +33,11 @@
     <string name="alert_mesaj">Are you sure ?</string>
 
 
+    <string name="School">school</string>
+    <string name="Sport">sport</string>
+    <string name="Shopping">shopping</string>
+    <string name="Business">business</string>
+
+
 
 </resources>

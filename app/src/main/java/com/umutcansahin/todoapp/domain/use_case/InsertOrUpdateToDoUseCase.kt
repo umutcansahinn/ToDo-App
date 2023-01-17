@@ -14,7 +14,8 @@ class InsertOrUpdateToDoUseCase @Inject constructor(
         isInsert: Boolean,
         id: Int?,
         type: String?,
-        date: Date
+        date: Date,
+        isDone: Boolean
     ) {
         type?.let {
 
@@ -25,7 +26,8 @@ class InsertOrUpdateToDoUseCase @Inject constructor(
                         name = name,
                         id = id!!,
                         type = type,
-                        timestamp = date
+                        timestamp = date,
+                        isDone = false
                     )
                 )
 
@@ -35,7 +37,8 @@ class InsertOrUpdateToDoUseCase @Inject constructor(
                         name = name,
                         id = id!!,
                         type = type,
-                        timestamp = date
+                        timestamp = date,
+                        isDone = isDone
                     )
                 )
             }

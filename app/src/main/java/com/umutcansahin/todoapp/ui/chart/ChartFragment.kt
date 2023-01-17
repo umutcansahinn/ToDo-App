@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.annotation.ColorRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -41,11 +42,8 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
     }
 
     private fun initViews() {
-        binding.pieChart.setOnChartValueSelectedListener(object :OnChartValueSelectedListener {
+        binding.pieChart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
             override fun onValueSelected(e: Entry?, h: Highlight?) {
-                Log.d("pie_e","${e}")
-                Log.d("pie_e","${e?.data}")
-                Log.d("pie_h","${h}")
                 e?.let {
 
                     val action = ChartFragmentDirections
@@ -53,6 +51,7 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
                     Navigation.findNavController(requireView()).navigate(action)
                 }
             }
+
             override fun onNothingSelected() {}
         })
     }
@@ -63,29 +62,53 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
         var shopping = 0f
         var sport = 0f
         var business = 0f
+        var schoolColor = ""
+        var shoppingColor = ""
+        var sportColor = ""
+        var businessColor = ""
 
         list.forEach {
             when (it.type) {
-                "School" -> school ++
-                "Business" -> business ++
-                "Shopping" -> shopping ++
-                "Sport" -> sport ++
+                "School" -> {
+                    school++
+                    schoolColor = it.typeColor
+                }
+                "Business" -> {
+                    business++
+                    businessColor = it.typeColor
+                }
+                "Shopping" -> {
+                    shopping++
+                    shoppingColor = it.typeColor
+                }
+                "Sport" -> {
+                    sport++
+                    sportColor = it.typeColor
+                }
             }
 
-            val pieEntry = mutableListOf<PieEntry>()
-            pieEntry.add(PieEntry(school, "School","School"))
-            pieEntry.add(PieEntry(business, "Business","Business"))
-            pieEntry.add(PieEntry(sport, "Sport","Sport"))
-            pieEntry.add(PieEntry(shopping, "Shopping","Shopping"))
-
-            val pieDataSet = PieDataSet(pieEntry, "")
-            pieDataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
-            pieDataSet.valueTextSize = 30f
-            pieDataSet.valueTextColor = Color.BLACK
-            pieDataSet.formSize = 25f
-            val data = PieData(pieDataSet)
-            pieChart.data = data
-            pieChart.animateY(2000)
         }
+
+
+        val pieEntry = mutableListOf<PieEntry>()
+        pieEntry.add(PieEntry(school, "School", "School"))
+        pieEntry.add(PieEntry(business, "Business", "Business"))
+        pieEntry.add(PieEntry(sport, "Sport", "Sport"))
+        pieEntry.add(PieEntry(shopping, "Shopping", "Shopping"))
+
+        val pieDataSet = PieDataSet(pieEntry, "")
+        pieDataSet.setColors(
+            Color.parseColor(schoolColor),
+            Color.parseColor(businessColor),
+            Color.parseColor(sportColor),
+            Color.parseColor(shoppingColor)
+        )
+        pieDataSet.valueTextSize = 30f
+        pieDataSet.valueTextColor = Color.BLACK
+        pieDataSet.formSize = 25f
+        val data = PieData(pieDataSet)
+        pieChart.data = data
+        pieChart.animateY(2000)
+
     }
 }

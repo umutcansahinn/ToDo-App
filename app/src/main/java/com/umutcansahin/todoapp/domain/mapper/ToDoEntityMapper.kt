@@ -1,5 +1,7 @@
 package com.umutcansahin.todoapp.domain.mapper
 
+import android.graphics.Color
+import com.umutcansahin.todoapp.R
 import com.umutcansahin.todoapp.data.local.ToDoEntity
 import com.umutcansahin.todoapp.domain.uimodel.ToDoUIModel
 
@@ -14,7 +16,8 @@ class ToDoEntityMapper {
         name = getName(),
         isDone = getIsDone() ,
         type = getType(),
-        timestamp = getTimestamp()
+        timestamp = getTimestamp(),
+        typeColor = getTypeColor()
     )
 
     private fun ToDoEntity.getId() = id
@@ -27,6 +30,13 @@ class ToDoEntityMapper {
 
     private fun ToDoEntity.getTimestamp() = timestamp
 
+    private fun ToDoEntity.getTypeColor() = when(type) {
+        "School" -> "#FFFFAB91"
+        "Sport" -> "#FFFFCC80"
+        "Business" -> "#FFA5D6A7"
+        "Shopping" -> "#FF80DEEA"
+        else -> "#FFE4E4E4"
+    }
 
 
 }

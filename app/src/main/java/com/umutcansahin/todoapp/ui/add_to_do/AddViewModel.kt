@@ -25,7 +25,14 @@ class AddViewModel @Inject constructor(
     fun insertOrUpdate(name: String,isInsert: Boolean,id: Int?,type: String?,date: Date) {
         viewModelScope.launch(Dispatchers.IO) {
 
-            insertOrUpdateToDoUseCase(name = name, isInsert = isInsert, id = id, type = type,date = date)
+            insertOrUpdateToDoUseCase(
+                name = name,
+                isInsert = isInsert,
+                id = id,
+                type = type,
+                date = date,
+                isDone = false
+            )
         }
     }
 

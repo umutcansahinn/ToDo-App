@@ -11,6 +11,7 @@ data class ToDoUIModel(
     val name: String,
     val isDone: Boolean,
     val type: String,
-    val timestamp: Date
+    val timestamp: Date,
+    val typeColor: String
 ): Parcelable
 

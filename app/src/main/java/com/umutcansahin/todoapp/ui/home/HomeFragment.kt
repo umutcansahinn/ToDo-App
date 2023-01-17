@@ -1,7 +1,5 @@
 package com.umutcansahin.todoapp.ui.home
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -58,6 +56,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
             }
             alert.show()
+        }
+
+        toDoListAdapter.onItemClickCheckBox = {
+            viewModel.updateIsDone(toDoUIModel = it)
         }
     }
 

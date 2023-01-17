@@ -8,8 +8,19 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="gray_100">#DFDFDF</color>
-    <color name="blue_100">#1E88E5</color>
-    <color name="orange_100">#F4511E</color>
-    <color name="red_100">#E53935</color>
+    <color name="gray_100">#E6EE9C</color>
+    <color name="delete_button">#EC407A</color>
+
+
+
+    <color name="orange_100">#FF7043</color>
+    <color name="blue_100">#26C6DA</color>
+    <color name="gray">#E4E4E4</color>
+
+    <color name="business">#FFA5D6A7</color>
+    <color name="shopping">#FF80DEEA</color>
+    <color name="sport">#FFFFCC80</color>
+    <color name="school">#FFFFAB91</color>
+
+
 </resources>
