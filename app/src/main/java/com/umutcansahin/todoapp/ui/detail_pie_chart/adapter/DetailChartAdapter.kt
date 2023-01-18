@@ -1,6 +1,7 @@
 package com.umutcansahin.todoapp.ui.detail_pie_chart.adapter
 
 import android.graphics.Color
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -30,7 +31,32 @@ class DetailChartAdapter(val toDoList: ArrayList<ToDoUIModel>) : RecyclerView.Ad
         )
 
         holder.binding.cardView.setCardBackgroundColor(Color.parseColor(toDoList[position].typeColor))
+
+        if (toDoList[position].isDone) {
+            holder.binding.recyclerNameTextView.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+            holder.binding.recyclerTypeTextView.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+            holder.binding.recyclerDateTextView.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+            holder.binding.recyclerNameTextView.setTextColor(Color.DKGRAY)
+            holder.binding.recyclerTypeTextView.setTextColor(Color.DKGRAY)
+            holder.binding.recyclerDateTextView.setTextColor(Color.DKGRAY)
+
+
+            holder.binding.cardView.setCardBackgroundColor(Color.LTGRAY)
+
+        }else {
+            holder.binding.recyclerNameTextView.setTextColor(Color.BLACK)
+            holder.binding.recyclerTypeTextView.setTextColor(Color.BLACK)
+            holder.binding.recyclerDateTextView.setTextColor(Color.BLACK)
+            holder.binding.recyclerNameTextView.paintFlags = Paint.START_HYPHEN_EDIT_NO_EDIT
+            holder.binding.recyclerTypeTextView.paintFlags = Paint.END_HYPHEN_EDIT_NO_EDIT
+            holder.binding.recyclerDateTextView.paintFlags = Paint.ANTI_ALIAS_FLAG
+
+
+            holder.binding.cardView.setCardBackgroundColor(Color.parseColor(toDoList[position].typeColor))
+        }
     }
+
+
 
     override fun getItemCount(): Int {
         return toDoList.size

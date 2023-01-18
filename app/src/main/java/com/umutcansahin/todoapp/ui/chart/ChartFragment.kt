@@ -2,17 +2,15 @@ package com.umutcansahin.todoapp.ui.chart
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.annotation.ColorRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
-import com.github.mikephil.charting.utils.ColorTemplate
 import com.umutcansahin.todoapp.R
 import com.umutcansahin.todoapp.databinding.FragmentChartBinding
 import com.umutcansahin.todoapp.domain.uimodel.ToDoUIModel
@@ -37,7 +35,14 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
     private fun observeEvent() {
 
         viewModel.entity.observe(viewLifecycleOwner, Observer {
-            setChartData(it)
+            if (it.isEmpty()) {
+                binding.messageTextView.visibility = View.VISIBLE
+                binding.pieChart.visibility = View.GONE
+            } else {
+                setChartData(it)
+                binding.pieChart.visibility = View.VISIBLE
+                binding.messageTextView.visibility = View.GONE
+            }
         })
     }
 
@@ -62,10 +67,10 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
         var shopping = 0f
         var sport = 0f
         var business = 0f
-        var schoolColor = ""
-        var shoppingColor = ""
-        var sportColor = ""
-        var businessColor = ""
+        var schoolColor ="#FFFFFF"
+        var shoppingColor = "#FFFFFF"
+        var sportColor = "#FFFFFF"
+        var businessColor = "#FFFFFF"
 
         list.forEach {
             when (it.type) {
@@ -86,15 +91,14 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
                     sportColor = it.typeColor
                 }
             }
-
         }
-
 
         val pieEntry = mutableListOf<PieEntry>()
         pieEntry.add(PieEntry(school, "School", "School"))
         pieEntry.add(PieEntry(business, "Business", "Business"))
         pieEntry.add(PieEntry(sport, "Sport", "Sport"))
         pieEntry.add(PieEntry(shopping, "Shopping", "Shopping"))
+
 
         val pieDataSet = PieDataSet(pieEntry, "")
         pieDataSet.setColors(
@@ -105,7 +109,8 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
         )
         pieDataSet.valueTextSize = 30f
         pieDataSet.valueTextColor = Color.BLACK
-        pieDataSet.formSize = 25f
+        pieDataSet.formSize = 30f
+        pieDataSet.form = Legend.LegendForm.CIRCLE
         val data = PieData(pieDataSet)
         pieChart.data = data
         pieChart.animateY(2000)
