@@ -1,7 +1,5 @@
 package com.umutcansahin.todoapp.domain.mapper
 
-import android.graphics.Color
-import com.umutcansahin.todoapp.R
 import com.umutcansahin.todoapp.data.local.ToDoEntity
 import com.umutcansahin.todoapp.domain.uimodel.ToDoUIModel
 
