@@ -95,8 +95,15 @@ class AddFragment : Fragment(R.layout.fragment_add) {
                     .setSelection(selectedDate.time)
                     .build()
             datePicker.addOnPositiveButtonClickListener { timestamp ->
-                selectedDate = Date(timestamp)
-                dateButton.text = selectedDate.toFormat(Constants.CURRENT_DATE_FORMAT)
+                //set and define the calendar instance to local timezone. It prevents Calendar sets one day before the selected.
+                val selectedUtc = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+                selectedUtc.timeInMillis = timestamp
+                val selectedLocal = Calendar.getInstance()
+                selectedLocal.clear()
+                selectedLocal.set(selectedUtc.get(Calendar.YEAR), selectedUtc.get(Calendar.MONTH), selectedUtc.get(Calendar.DATE))
+
+                selectedDate = selectedLocal.time
+                dateButton.text = selectedLocal.time.toFormat(Constants.CURRENT_DATE_FORMAT)
             }
             datePicker.show(parentFragmentManager, Constants.TAG_DATE_PICKER);
         }
