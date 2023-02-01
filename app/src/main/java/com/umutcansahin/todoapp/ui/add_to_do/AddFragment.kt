@@ -1,7 +1,6 @@
 package com.umutcansahin.todoapp.ui.add_to_do
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
@@ -12,13 +11,14 @@ import com.umutcansahin.todoapp.utils.Constants
 import com.umutcansahin.todoapp.utils.toFormat
 import com.umutcansahin.todoapp.databinding.FragmentAddBinding
 import com.umutcansahin.todoapp.domain.uimodel.ToDoUIModel
+import com.umutcansahin.todoapp.utils.BaseFragment
 import com.umutcansahin.todoapp.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_add.*
 import java.util.*
 
 @AndroidEntryPoint
-class AddFragment : Fragment(R.layout.fragment_add) {
+class AddFragment : BaseFragment(R.layout.fragment_add) {
 
     private val binding by viewBinding(FragmentAddBinding::bind)
 
@@ -118,5 +118,7 @@ class AddFragment : Fragment(R.layout.fragment_add) {
 
             }
         }
+        bottomNavigationViewVisibility = View.GONE
+        toolbarVisibility = true
     }
 }

@@ -8,11 +8,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.umutcansahin.todoapp.R
 import com.umutcansahin.todoapp.databinding.FragmentDetailChartBinding
 import com.umutcansahin.todoapp.ui.detail_pie_chart.adapter.DetailChartAdapter
+import com.umutcansahin.todoapp.utils.BaseFragment
 import com.umutcansahin.todoapp.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DetailChartFragment : Fragment(R.layout.fragment_detail_chart) {
+class DetailChartFragment : BaseFragment(R.layout.fragment_detail_chart) {
 
     private val binding by viewBinding(FragmentDetailChartBinding::bind)
 
@@ -43,5 +44,8 @@ class DetailChartFragment : Fragment(R.layout.fragment_detail_chart) {
     private fun initViews() {
         binding.recyclerView.adapter = detailChartAdapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        bottomNavigationViewVisibility = View.GONE
+        toolbarVisibility = true
     }
 }

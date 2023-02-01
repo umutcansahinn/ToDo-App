@@ -14,12 +14,13 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.umutcansahin.todoapp.R
 import com.umutcansahin.todoapp.databinding.FragmentChartBinding
 import com.umutcansahin.todoapp.domain.uimodel.ToDoUIModel
+import com.umutcansahin.todoapp.utils.BaseFragment
 import com.umutcansahin.todoapp.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_chart.*
 
 @AndroidEntryPoint
-class ChartFragment : Fragment(R.layout.fragment_chart) {
+class ChartFragment : BaseFragment(R.layout.fragment_chart) {
 
     private val binding by viewBinding(FragmentChartBinding::bind)
 
@@ -59,6 +60,9 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
 
             override fun onNothingSelected() {}
         })
+
+        bottomNavigationViewVisibility = View.VISIBLE
+        toolbarVisibility = true
     }
 
     private fun setChartData(list: List<ToDoUIModel>) {
@@ -116,4 +120,5 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
         pieChart.animateY(2000)
 
     }
+
 }

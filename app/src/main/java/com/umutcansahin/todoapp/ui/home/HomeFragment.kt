@@ -11,11 +11,12 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.umutcansahin.todoapp.R
 import com.umutcansahin.todoapp.databinding.FragmentHomeBinding
 import com.umutcansahin.todoapp.ui.home.adapter.ToDoListAdapter
+import com.umutcansahin.todoapp.utils.BaseFragment
 import com.umutcansahin.todoapp.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(R.layout.fragment_home) {
+class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     private val binding by viewBinding(FragmentHomeBinding::bind)
 
@@ -61,6 +62,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         toDoListAdapter.onItemClickCheckBox = {
             viewModel.updateIsDone(toDoUIModel = it)
         }
+        bottomNavigationViewVisibility = View.VISIBLE
+        toolbarVisibility = true
     }
 
     private fun observeEvent() {
