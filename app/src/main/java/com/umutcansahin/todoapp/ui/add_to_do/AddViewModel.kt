@@ -5,8 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.umutcansahin.todoapp.domain.uimodel.ToDoUIModel
-import com.umutcansahin.todoapp.domain.use_case.GetSingleToDoUseCase
-import com.umutcansahin.todoapp.domain.use_case.InsertOrUpdateToDoUseCase
+import com.umutcansahin.todoapp.domain.use_case.AllUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,8 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddViewModel @Inject constructor(
-    private val insertOrUpdateToDoUseCase: InsertOrUpdateToDoUseCase,
-    private val getSingleToDoUseCase: GetSingleToDoUseCase
+    private val allUseCases: AllUseCases
 ) : ViewModel(){
 
     private val _singleToDo = MutableLiveData<ToDoUIModel>()
@@ -25,7 +23,7 @@ class AddViewModel @Inject constructor(
     fun insertOrUpdate(name: String,isInsert: Boolean,id: Int?,type: String?,date: Date) {
         viewModelScope.launch(Dispatchers.IO) {
 
-            insertOrUpdateToDoUseCase(
+            allUseCases.insertOrUpdateToDoUseCase(
                 name = name,
                 isInsert = isInsert,
                 id = id,
@@ -39,7 +37,7 @@ class AddViewModel @Inject constructor(
     fun getById(id: Int?) {
         viewModelScope.launch {
             if (id != 0 && id != null) {
-                _singleToDo.value = getSingleToDoUseCase.invoke(id = id)
+                _singleToDo.value = allUseCases.getSingleToDoUseCase.invoke(id = id)
             }
         }
     }
